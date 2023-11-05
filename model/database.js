@@ -4,8 +4,8 @@ const mongooseUniqueValidator = require('mongoose-unique-validator');
 const schema = require('./schema');
 
 class BooksDatabase {
-    constructor() {
-        mongoose.connect(process.env.URL);
+     constructor() {
+        mongoose.connect(process.env.URL,{ useNewUrlParser: true, useUnifiedTopology: true });
         console.log("Connected database")
     }
 

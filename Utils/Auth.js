@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 async function Auth(req, res, next) {
+    var secretKey = process.env.SECRET_KEY
     var token = req.headers['authorization']
-    let secretKey = process.env.SECRET_KEY 
     try {
         if (!token) {
             res.status(401).json({
@@ -23,6 +23,7 @@ async function Auth(req, res, next) {
     }
     }
     catch (error) {
+        console.log(error)
         res.status(401).json({
             "Error": "Unable to Authorize"
         })

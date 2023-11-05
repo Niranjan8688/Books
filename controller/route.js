@@ -1,8 +1,8 @@
-var express = require('express')
-var Books = require('../model/database')
-var app= express()
-var route = express.Router()
-var BooksInstance = new Books()
+const express = require('express')
+const Books = require('../model/database')
+const app= express()
+const route = express.Router()
+const BooksInstance = new Books()
 
 route.post('/addBooks',BooksInstance.addBooks)
 route.delete('/deleteBook',BooksInstance.deleteBooks)
