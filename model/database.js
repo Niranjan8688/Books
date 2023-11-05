@@ -5,7 +5,7 @@ const schema = require('./schema');
 
 class BooksDatabase {
     constructor() {
-        mongoose.connect(process.env.LOCAL_URL);
+        mongoose.connect(process.env.URL);
         console.log("Connected database")
     }
 
