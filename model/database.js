@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 const mongooseUniqueValidator = require('mongoose-unique-validator');
 const schema = require('./schema');
 
 class BooksDatabase {
     constructor() {
-        mongoose.connect('mongodb://127.0.0.1:27017/Books');
+        mongoose.connect(process.env.LOCAL_URL);
         console.log("Connected database")
     }
 
     async addBooks(req, res) {
         let Books = mongoose.model('Books', schema);
-        schema.plugin(mongooseUniqueValidator, { message: 'Book number {VALUE} already exist' })
+        schema.plugin(mongooseUniqueValidator, { message: 'Book Id {VALUE} already exist' })
         let addBooks = new Books({
             bookId: req.body.bookId,
             title: req.body.title,
