@@ -78,6 +78,7 @@ URL : localhost:8080
 - Error Handling
 - Validation
 - Authentication and Authorization
+- Added FireBase function  in function folder for deployment in firebase
 
 
 
