@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose');
+const { booksSchema, UserSchema , borrowingSchema } = require('../model/schema')
 require('dotenv').config()
 async function Auth(req, res, next) {
     var secretKey = process.env.SECRET_KEY
@@ -11,8 +13,11 @@ async function Auth(req, res, next) {
 
         }
         else{
-        const decoded = jwt.verify(token, secretKey);
-        if (decoded?.isValid == 'True') {
+        const data = jwt.verify(token, secretKey);
+        let User = mongoose.model('User', UserSchema);
+        const user = await User.findOne({ _id: data._id});
+        console.log(user)
+        if (user.email) {
             next()
         }
         else{
@@ -29,5 +34,8 @@ async function Auth(req, res, next) {
         })
     }
 }
+async function authorize(){
+    
+}
 
-module.exports = Auth
+module.exports = {Auth,authorize }
